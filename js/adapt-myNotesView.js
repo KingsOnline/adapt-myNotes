@@ -5,15 +5,25 @@ define(function(require) {
 
     var moodleView = Backbone.View.extend({
 
-        className: "moodle",
+        className: "myNotes",
 
         initialize: function(blockModel) {
+            console.log('init');
             this.listenTo(Adapt, 'remove', this.remove);
-            this.render(blockModel);
+            var data = this.model.toJSON();
+            var template = Handlebars.templates.myNotes;
+            this.setElement(template(data)).$el.appendTo($(".navigation-inner"));
+            this.listenTo(Adapt, {
+                "navigation:openMyNotes": this.helloWorld
+            });
         },
 
         events: {
-            'click button.moodle-launch-button': 'launchButton'
+            'click button.navigation-myNotes': 'helloWorld'
+        },
+
+        helloWorld: function(event) {
+          console.log('hello world');
         },
 
         launchButton: function(event) {
