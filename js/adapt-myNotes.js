@@ -6,7 +6,7 @@ define(function(require) {
 
   Adapt.once('pageView:ready', function() {
     if (!Adapt.iframe) {
-      removeIframeHolder();
+      // removeIframeHolder();
       createIframeHolder();
     }
     createMyNotes();
@@ -14,7 +14,6 @@ define(function(require) {
   });
 
   Adapt.on("menuView:ready", function() {
-    removeElements();
   });
 
   function loadMyNotes() {
@@ -47,7 +46,7 @@ define(function(require) {
       adaptCSS = adaptCSS.substring(0, adaptCSS.lastIndexOf('/'));
       adaptCSS += "/assets/adapt-myNotes.css"
       console.log('APPENDING TO HEAD ' + adaptCSS);
-      $('.moodle-iframe').contents().find("head").append($("<link/>", {
+      $('.myNotes-iframe').contents().find("head").append($("<link/>", {
         rel: "stylesheet",
         href: adaptCSS,
         type: "text/css"
