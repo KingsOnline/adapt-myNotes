@@ -2,11 +2,11 @@
   "name": "adapt-myNotes",
   "version": "0.0.1",
   "framework": "^2.0.0",
-  "homepage": "https://github.com/kingsonline/adapt-moodle",
+  "homepage": "https://github.com/kingsonline/adapt-myNotes",
   "issues": "https://github.com/kingsonline/adapt-moodle/issues",
   "displayName": "My Notes",
   "extension": "myNotes",
-  "description": "Brings Moodle activities into Adapt. <a href='https://docs.google.com/a/kingsonline.eu/document/d/1f7pWiWsz2QtTK7m70ETs6txA_oYtMecPIzR00NeKJX4/edit?usp=sharing'>Guide on how to use here.</a>",
+  "description": "",
   "main": "/js/adapt-myNotes.js",
   "keywords": [
     "adapt-plugin",
