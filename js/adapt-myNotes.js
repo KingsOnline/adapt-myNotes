@@ -4,20 +4,23 @@ define(function(require) {
   var Backbone = require('backbone');
   var myNotesView = require('extensions/adapt-myNotes/js/adapt-myNotesView');
 
-  Adapt.once('pageView:ready', function() {
-    if (!Adapt.iframe) {
-      // removeIframeHolder();
+  Adapt.once('app:dataReady', function() {
+    console.log('app ready notes');
+    if (!Adapt.iframe)
       createIframeHolder();
-    }
-    createMyNotes();
+  });
+
+  Adapt.on('pageView:postRender', function() {
+    console.log('pageView:preRender');
     loadMyNotes();
   });
 
-  Adapt.on("menuView:ready", function() {
-  });
+  // Adapt.on('menuView:postRender', function() {
+  //   console.log('menuView:preRender');
+  //   loadMyNotes();
+  // });
 
   function loadMyNotes() {
-    console.log(Adapt.course);
     if (Adapt.course.attributes._myNotes._isEnabled === true) {
       new myNotesView({
         model: new Backbone.Model()
@@ -25,17 +28,10 @@ define(function(require) {
     }
   }
 
-  function createMyNotes() {
-    console.log('createnotes');
-    $('.moodle-iframe-holder').append("<iframe name='myNotesIframe' id='myNotesIframe' class=myNotes-iframe src='" + Adapt.course.attributes._myNotes._link + "'></iframe>");
-  }
-
-
   function createIframeHolder() {
     console.log('created iframe holder');
     $('html').append("<div class='moodle-view close'><button class='moodle-close-button'></button><div class='moodle-iframe-holder'></div></div>");
     $('body').addClass('moodle-close');
-    applyCSSFile();
     Adapt.iframe = true;
   }
 
@@ -59,10 +55,4 @@ define(function(require) {
       }, 100);
     });
   }
-
-  function removeIframeHolder() {
-    $('.moodle-view').remove();
-    $('body').removeClass('moodle-close moodle-open');
-  }
-
 });

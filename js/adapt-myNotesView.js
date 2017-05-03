@@ -8,14 +8,19 @@ define(function(require) {
     className: "myNotes",
 
     initialize: function(blockModel) {
-      console.log('init');
       this.listenTo(Adapt, 'remove', this.remove);
       var data = this.model.toJSON();
       var template = Handlebars.templates.myNotes;
       this.setElement(template(data)).$el.appendTo($(".navigation-inner"));
+      this.createMyNotes();
       this.listenTo(Adapt, {
         "navigation:openMyNotes": this.launchButton
       });
+      console.log('finished');
+    },
+
+    createMyNotes: function(event) {
+      $('.moodle-iframe-holder').append("<iframe name='myNotesIframe' id='myNotesIframe' class=myNotes-iframe src='" + Adapt.course.attributes._myNotes._link + "'></iframe>");
     },
 
     launchButton: function(event) {
