@@ -13,6 +13,7 @@ define(function(require) {
   Adapt.once('adapt:start', function() {
     console.log('adapt:start');
     createMyNotes();
+    applyCSSFile();
   });
 
   Adapt.on('pageView:postRender', function() {

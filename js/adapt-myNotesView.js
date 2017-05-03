@@ -19,13 +19,14 @@ define(function(require) {
     },
 
     launchButton: function(event) {
-      $('.myNotes-iframe').css('display', 'block');
-      //$('.myNotes-iframe').siblings().css('display', 'none');
-      if ($('.moodle-view').hasClass('open')) {
+      console.log($('.moodle-iframe').hasClass('hidden'));
+      if ($('.moodle-view').hasClass('open') && $('.moodle-iframe').hasClass('hidden')) {
         this.closeLightbox(event); // close
       } else {
         this.openLightbox(event);
       }
+      $('.myNotes-iframe').removeClass('hidden');
+      $('.myNotes-iframe').siblings().addClass('hidden');
     },
 
     openLightbox: function(event) {
