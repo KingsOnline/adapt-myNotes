@@ -10,22 +10,32 @@ define(function(require) {
       createIframeHolder();
   });
 
+  Adapt.once('adapt:start', function() {
+    console.log('adapt:start');
+    createMyNotes();
+  });
+
   Adapt.on('pageView:postRender', function() {
-    console.log('pageView:preRender');
+    console.log('pageview:preRender');
     loadMyNotes();
   });
 
-  // Adapt.on('menuView:postRender', function() {
-  //   console.log('menuView:preRender');
-  //   loadMyNotes();
-  // });
+  Adapt.on('menuView:postRender', function() {
+    console.log('menuView:preRender');
+    loadMyNotes();
+  });
 
   function loadMyNotes() {
+    console.log('create');
     if (Adapt.course.attributes._myNotes._isEnabled === true) {
       new myNotesView({
         model: new Backbone.Model()
       });
     }
+  }
+
+  function createMyNotes() {
+    $('.moodle-iframe-holder').append("<iframe name='myNotesIframe' id='myNotesIframe' class=myNotes-iframe src='" + Adapt.course.attributes._myNotes._link + "'></iframe>");
   }
 
   function createIframeHolder() {

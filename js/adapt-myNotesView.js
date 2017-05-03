@@ -12,20 +12,15 @@ define(function(require) {
       var data = this.model.toJSON();
       var template = Handlebars.templates.myNotes;
       this.setElement(template(data)).$el.appendTo($(".navigation-inner"));
-      this.createMyNotes();
       this.listenTo(Adapt, {
         "navigation:openMyNotes": this.launchButton
       });
       console.log('finished');
     },
 
-    createMyNotes: function(event) {
-      $('.moodle-iframe-holder').append("<iframe name='myNotesIframe' id='myNotesIframe' class=myNotes-iframe src='" + Adapt.course.attributes._myNotes._link + "'></iframe>");
-    },
-
     launchButton: function(event) {
       $('.myNotes-iframe').css('display', 'block');
-      $('.myNotes-iframe').siblings().css('display', 'none');
+      //$('.myNotes-iframe').siblings().css('display', 'none');
       if ($('.moodle-view').hasClass('open')) {
         this.closeLightbox(event); // close
       } else {
@@ -46,6 +41,7 @@ define(function(require) {
     closeLightbox: function(event) {
       $('.moodle-view').removeClass('open').addClass('close');
       $('body').removeClass('moodle-open').addClass('moodle-close');
+      $('.moodle-launch-button.open').removeClass('open');
     }
   });
 
