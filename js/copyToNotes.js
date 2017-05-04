@@ -25,8 +25,12 @@ define(function(require) {
     });
   }
 
+
+
   function copyAcross() {
     console.log(selected);
+    var frameContents = $(".myNotes-iframe").contents();
+    frameContents.find('#id_messageeditable').append(selected);
   }
 
   function copyPrompt(e, selection) {
@@ -55,7 +59,7 @@ define(function(require) {
     $('.copy-box').show();
     $('.copy-box').css({
       "left": x,
-      "top": y + 50
+      "top": y + 10
     })
   }
 

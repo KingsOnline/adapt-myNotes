@@ -37,7 +37,7 @@ define(function(require) {
   }
 
   function createMyNotes() {
-    $('.moodle-iframe-holder').append("<iframe name='myNotesIframe' id='myNotesIframe' class=myNotes-iframe src='" + Adapt.course.attributes._myNotes._link + "'></iframe>");
+    $('.moodle-iframe-holder').append("<iframe name='myNotesIframe' id='myNotesIframe' class='myNotes-iframe' src='" + Adapt.course.attributes._myNotes._link + "'></iframe>");
   }
 
   function createIframeHolder() {
