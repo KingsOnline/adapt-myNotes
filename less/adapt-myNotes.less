@@ -119,6 +119,16 @@
   body.moodle-open {
     .transition-time(1s);
     width: 65%;
+
+    .navigation button:not(.navigation-myNotes),
+    a.icon,
+    a.icon *,
+    button:not(.navigation-myNotes) * {
+      color: @disabled-color;
+      border-color: @disabled-color;
+      pointer-events: none;
+      cursor: default;
+    }
   }
 
   body.moodle-close {
