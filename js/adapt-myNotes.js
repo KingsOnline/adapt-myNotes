@@ -3,6 +3,7 @@ define(function(require) {
   var Adapt = require('coreJS/adapt');
   var Backbone = require('backbone');
   var myNotesView = require('extensions/adapt-myNotes/js/adapt-myNotesView');
+  var copyNotes = require('extensions/adapt-myNotes/js/copyToNotes');
 
   Adapt.once('app:dataReady', function() {
     console.log('app ready notes');
