@@ -20,17 +20,20 @@ define(function(require) {
 
   function createCopyBox() {
     $('#wrapper').append("<div class='copy-box'><button class'copy-box-button icon-save icon'><i class='icon icon-save'/>Hello box</button></div>");
-    $('body').on('click','.copy-box', function(){
-        copyAcross();
+    $('body').on('click', '.copy-box', function() {
+      copyAcross();
     });
   }
 
 
 
   function copyAcross() {
-    console.log(selected);
     var frameContents = $(".myNotes-iframe").contents();
-    frameContents.find('#id_messageeditable').append(selected);
+    if (frameContents.find('#id_messageeditable').text() == '') {
+      frameContents.find('#id_messageeditable').append(selected);
+    } else {
+          frameContents.find('#id_messageeditable').append("<br><br>" + selected);
+    }
   }
 
   function copyPrompt(e, selection) {

@@ -60,7 +60,7 @@ define(function(require) {
         type: "text/css"
       }));
 
-      document.getElementById('moodleIframe').contentWindow.window.onbeforeunload = null; // prevents error message when leaving moodle page when you haven't submitted.
+      document.getElementById('myNotesIframe').contentWindow.window.onbeforeunload = null; // prevents error message when leaving moodle page when you haven't submitted.
 
       setTimeout(function() {
         $('.moodle-iframe-holder').removeClass('loading-iframe');
