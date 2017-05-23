@@ -21,25 +21,25 @@ define(function(require) {
     launchButton: function(event) {
       console.log($('.moodle-iframe').hasClass('hidden'));
       if ($('.moodle-view').hasClass('open') && $('.moodle-iframe').hasClass('hidden')) {
-        this.closeLightbox(event); // close
+        this.closeNotesManager(event); // close
       } else {
-        this.openLightbox(event);
+        this.openNotesManager(event);
       }
       $('.myNotes-iframe').removeClass('hidden');
       $('.myNotes-iframe').siblings().addClass('hidden');
     },
 
-    openLightbox: function(event) {
+    openNotesManager: function(event) {
       $('body').addClass('moodle-open').removeClass('moodle-close');
       $('.moodle-view').removeClass('close').addClass('open');
       $('.moodle-close-button').text('Close My Notes');
       var context = this;
       $(".moodle-close-button").on("click", function() {
-        context.closeLightbox();
+        context.closeNotesManager();
       });
     },
 
-    closeLightbox: function(event) {
+    closeNotesManager: function(event) {
       $('.moodle-view').removeClass('open').addClass('close');
       $('body').removeClass('moodle-open').addClass('moodle-close');
       $('.moodle-launch-button.open').removeClass('open');

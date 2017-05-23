@@ -3,7 +3,7 @@ define(function(require) {
   var Adapt = require('coreJS/adapt');
   var Backbone = require('backbone');
   var myNotesView = require('extensions/adapt-myNotes/js/adapt-myNotesView');
-  var copyNotes = require('extensions/adapt-myNotes/js/copyToNotes');
+  // var copyNotes = require('extensions/adapt-myNotes/js/copyToNotes');
 
   Adapt.once('app:dataReady', function() {
     console.log('app ready notes');
@@ -13,7 +13,7 @@ define(function(require) {
 
   Adapt.once('adapt:start', function() {
     console.log('adapt:start');
-    createMyNotes();
+    createNotesManager();
     applyCSSFile();
   });
 
@@ -36,9 +36,23 @@ define(function(require) {
     }
   }
 
-  function createMyNotes() {
-    $('.moodle-iframe-holder').append("<iframe name='myNotesIframe' id='myNotesIframe' class='myNotes-iframe' src='" + Adapt.course.attributes._myNotes._link + "'></iframe>");
+  function createNotesManager() {
+    $('.moodle-iframe-holder').append("<iframe name='myNotesIframe' id='myNotesIframe' class='myNotes-iframe' src='" + Adapt.course.attributes._myNotes._notesManager + "'></iframe>");
+    $('.moodle-view').prepend("<button class='moodle-post-button'>Post</button>");
+    var context = this;
+    console.log(this);
+    $(document).on('click', '.moodle-post-button', function() {
+      console.log('pressed');
+      $('#myNotesIframe').contents().find('#id_submitbutton').trigger("click");
+    });
   }
+
+  // function postMessage() {
+  //   console.log('postMessage');
+  //   window.load(function() {
+  //     $('#myNotesIframe').contents().find('#id_submitbutton').trigger("click");
+  //   });
+  // }
 
   function createIframeHolder() {
     console.log('created iframe holder');
