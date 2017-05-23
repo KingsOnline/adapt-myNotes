@@ -15,6 +15,12 @@ define(function(require) {
       this.listenTo(Adapt, {
         "navigation:openMyNotes": this.launchButton
       });
+
+      $(document).on('click', '.moodle-post-button', function() {
+        console.log('pressed');
+        $('#myNotesIframe').contents().find('#id_submitbutton').trigger("click");
+      });
+
       console.log('finished');
     },
 

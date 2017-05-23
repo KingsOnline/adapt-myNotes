@@ -14,6 +14,7 @@ define(function(require) {
   Adapt.once('adapt:start', function() {
     console.log('adapt:start');
     createNotesManager();
+    createPostNote();
     applyCSSFile();
   });
 
@@ -37,14 +38,11 @@ define(function(require) {
   }
 
   function createNotesManager() {
-    $('.moodle-iframe-holder').append("<iframe name='myNotesIframe' id='myNotesIframe' class='myNotes-iframe' src='" + Adapt.course.attributes._myNotes._notesManager + "'></iframe>");
-    $('.moodle-view').prepend("<button class='moodle-post-button'>Post</button>");
-    var context = this;
-    console.log(this);
-    $(document).on('click', '.moodle-post-button', function() {
-      console.log('pressed');
-      $('#myNotesIframe').contents().find('#id_submitbutton').trigger("click");
-    });
+    $('.moodle-iframe-holder').append("<div class='notesManger'><button class='moodle-newNote-button'>Create new Note</button><iframe name='myNotesIframe' id='myNotesIframe' class='myNotes-iframe' src='" + Adapt.course.attributes._myNotes._notesManager + "'></iframe></div>");
+  }
+
+  function createPostNote() {
+    $('.moodle-iframe-holder').append("<div class='newNote hidden'><button class='moodle-postNote-button'>Post Note</button><iframe name='newNoteIframe' id='newNoteIframe' class='newNote-iframe' src='" + Adapt.course.attributes._myNotes._newNote + "'></iframe></div>");
   }
 
   // function postMessage() {
