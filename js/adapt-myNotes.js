@@ -45,8 +45,7 @@ define(function(require) {
   }
 
   function createIframeHolder() {
-    console.log('created iframe holder');
-    $('html').append("<div class='moodle-view close'><button class='moodle-close-button'></button><div class='moodle-iframe-holder'></div></div>");
+    $('html').append("<div class='moodle-view close'><div class='iframe-controls-bar'><div class='iframe-controls-title' /><button class='moodle-close-button icon icon-cross'></button></div><div class='moodle-iframe-holder'></div></div>");
     $('body').addClass('moodle-close');
     Adapt.iframe = true;
   }

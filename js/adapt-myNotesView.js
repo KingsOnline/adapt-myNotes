@@ -89,7 +89,7 @@ define(function(require) {
     openNotesManager: function(event) {
       $('body').addClass('moodle-open').removeClass('moodle-close');
       $('.moodle-view').removeClass('close').addClass('open');
-      $('.moodle-close-button').text('Close My Notes');
+      $('.iframe-controls-title').text('Close My Notes');
       var context = this;
       $(".moodle-close-button").on("click", function() {
         context.closeNotesManager();
