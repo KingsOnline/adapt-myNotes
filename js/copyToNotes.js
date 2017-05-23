@@ -28,7 +28,7 @@ define(function(require) {
 
 
   function copyAcross() {
-    var frameContents = $(".myNotes-iframe").contents();
+    var frameContents = $(".notesManager-iframe").contents();
     if (frameContents.find('#id_messageeditable').text() == '') {
       frameContents.find('#id_messageeditable').append(selected);
     } else {

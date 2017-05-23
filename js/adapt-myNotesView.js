@@ -16,6 +16,9 @@ define(function(require) {
         "navigation:openMyNotes": this.launchButton
       });
 
+      this.applyCSSFile('notesManager-iframe');
+      this.applyCSSFile('newNote-iframe');
+
       var context = this;
 
       $(document).on('click', '.postNote-button', function() {
@@ -23,7 +26,30 @@ define(function(require) {
       });
 
       $(document).on('click', '.newNote-button', function() {
-        context.openNewNote();
+        console.log('e');
+        context.showNewNote();
+      });
+    },
+
+    applyCSSFile: function(iframe) {
+      $('.moodle-iframe-holder').addClass('loading-iframe');
+      $('.' + iframe).on('load', function() {
+        var adaptCSS = location.protocol + '//' + location.host + location.pathname;
+        adaptCSS = adaptCSS.substring(0, adaptCSS.lastIndexOf('/'));
+        adaptCSS += "/assets/adapt-myNotes.css"
+        console.log('APPENDING TO HEAD ' + adaptCSS);
+        $('.' + iframe).contents().find("head").append($("<link/>", {
+          rel: "stylesheet",
+          href: adaptCSS,
+          type: "text/css"
+        }));
+
+        document.getElementById(iframe).contentWindow.window.onbeforeunload = null; // prevents error message when leaving moodle page when you haven't submitted.
+
+        setTimeout(function() {
+          console.log('timeUP');
+          $('.moodle-iframe-holder').removeClass('loading-iframe');
+        }, 200);
       });
     },
 
@@ -34,17 +60,32 @@ define(function(require) {
       } else {
         this.openNotesManager(event);
       }
-      $('.notesManager').removeClass('hidden');
-      $('.notesManager').siblings().addClass('hidden');
+      this.showNotesManager();
     },
 
-    openNewNote: function(event) {
+    showNewNote: function(event) {
       $('.newNote').removeClass('hidden');
       $('.newNote').siblings().addClass('hidden');
     },
 
+    showNotesManager: function(event) {
+      $('.notesManager').removeClass('hidden');
+      $('.notesManager').siblings().addClass('hidden');
+    },
+
+    reloadIframes: function(event) {
+      document.getElementById('newNote-iframe').src = document.getElementById('newNote-iframe').src
+      document.getElementById('notesManager-iframe').src = document.getElementById('notesManager-iframe').src
+    },
+
     postNewNote: function(event) {
-      $('#myNotesIframe').contents().find('#id_submitbutton').trigger("click");
+
+      this.showNotesManager();
+      $('.notesManager-iframe').contents().find('#id_submitbutton').trigger("click");
+      this.reloadIframes();
+      this.applyCSSFile('.notesManager-iframe');
+      this.applyCSSFile('.newNote-iframe');
+
     },
 
     openNotesManager: function(event) {
