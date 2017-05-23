@@ -16,12 +16,15 @@ define(function(require) {
         "navigation:openMyNotes": this.launchButton
       });
 
-      $(document).on('click', '.moodle-post-button', function() {
-        console.log('pressed');
-        $('#myNotesIframe').contents().find('#id_submitbutton').trigger("click");
+      var context = this;
+
+      $(document).on('click', '.postNote-button', function() {
+        context.postNewNote();
       });
 
-      console.log('finished');
+      $(document).on('click', '.newNote-button', function() {
+        context.openNewNote();
+      });
     },
 
     launchButton: function(event) {
@@ -31,8 +34,17 @@ define(function(require) {
       } else {
         this.openNotesManager(event);
       }
-      $('.myNotes-iframe').removeClass('hidden');
-      $('.myNotes-iframe').siblings().addClass('hidden');
+      $('.notesManager').removeClass('hidden');
+      $('.notesManager').siblings().addClass('hidden');
+    },
+
+    openNewNote: function(event) {
+      $('.newNote').removeClass('hidden');
+      $('.newNote').siblings().addClass('hidden');
+    },
+
+    postNewNote: function(event) {
+      $('#myNotesIframe').contents().find('#id_submitbutton').trigger("click");
     },
 
     openNotesManager: function(event) {

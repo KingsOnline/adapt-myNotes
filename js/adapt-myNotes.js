@@ -38,11 +38,11 @@ define(function(require) {
   }
 
   function createNotesManager() {
-    $('.moodle-iframe-holder').append("<div class='notesManger'><button class='moodle-newNote-button'>Create new Note</button><iframe name='myNotesIframe' id='myNotesIframe' class='myNotes-iframe' src='" + Adapt.course.attributes._myNotes._notesManager + "'></iframe></div>");
+    $('.moodle-iframe-holder').append("<div class='notesManager'><button class='newNote-button'>Create new Note</button><iframe name='myNotesIframe' id='myNotesIframe' class='myNotes-iframe' src='" + Adapt.course.attributes._myNotes._notesManager + "'></iframe></div>");
   }
 
   function createPostNote() {
-    $('.moodle-iframe-holder').append("<div class='newNote hidden'><button class='moodle-postNote-button'>Post Note</button><iframe name='newNoteIframe' id='newNoteIframe' class='newNote-iframe' src='" + Adapt.course.attributes._myNotes._newNote + "'></iframe></div>");
+    $('.moodle-iframe-holder').append("<div class='newNote hidden'><button class='postNote-button'>Post Note</button><iframe name='newNoteIframe' id='newNoteIframe' class='newNote-iframe' src='" + Adapt.course.attributes._myNotes._newNote + "'></iframe></div>");
   }
 
   // function postMessage() {

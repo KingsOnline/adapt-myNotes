@@ -42,7 +42,6 @@
   flex-direction: column;
 
   .moodle-close-button {
-    height: 100%;
     width: 100%;
     height: 64px;
     color: @button-text-color;
@@ -59,10 +58,21 @@
     flex: 1;
     background: white;
 
+    .newNote-button,
+    .postNote-button {
+      height: 64px;
+      width: 100%;
+    }
+
     .newNote,
     .notesManager {
       height: 100%;
       width: 100%;
+
+      iframe {
+        height: 100%;
+        margin: 100%;
+      }
 
       &.hidden {
         display: none;
@@ -74,7 +84,8 @@
       background-repeat: no-repeat;
       background-position: center;
 
-      .myNotes-iframe {
+      .myNotes-iframe,
+      .notesManager-iframe {
         display: none;
       }
     }
