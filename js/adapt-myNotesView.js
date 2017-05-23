@@ -32,30 +32,29 @@ define(function(require) {
     },
 
     applyCSSFile: function(iframe) {
+      console.log('Applying CSS to ' + iframe);
       $('.moodle-iframe-holder').addClass('loading-iframe');
       $('.' + iframe).on('load', function() {
         var adaptCSS = location.protocol + '//' + location.host + location.pathname;
         adaptCSS = adaptCSS.substring(0, adaptCSS.lastIndexOf('/'));
         adaptCSS += "/assets/adapt-myNotes.css"
-        console.log('APPENDING TO HEAD ' + adaptCSS);
         $('.' + iframe).contents().find("head").append($("<link/>", {
           rel: "stylesheet",
           href: adaptCSS,
           type: "text/css"
         }));
 
-        document.getElementById(iframe).contentWindow.window.onbeforeunload = null; // prevents error message when leaving moodle page when you haven't submitted.
-
         setTimeout(function() {
           console.log('timeUP');
           $('.moodle-iframe-holder').removeClass('loading-iframe');
+          document.getElementById(iframe).contentWindow.window.onbeforeunload = null; // prevents error message when leaving moodle page when you haven't submitted.
         }, 200);
       });
     },
 
     launchButton: function(event) {
       console.log($('.moodle-iframe').hasClass('hidden'));
-      if ($('.moodle-view').hasClass('open') && $('.moodle-iframe').hasClass('hidden')) {
+      if ($('.moodle-view').hasClass('open') && !$('.notesManager').hasClass('hidden')) {
         this.closeNotesManager(event); // close
       } else {
         this.openNotesManager(event);
@@ -79,9 +78,8 @@ define(function(require) {
     },
 
     postNewNote: function(event) {
-
-      this.showNotesManager();
       $('.notesManager-iframe').contents().find('#id_submitbutton').trigger("click");
+      this.showNotesManager();
       this.reloadIframes();
       this.applyCSSFile('.notesManager-iframe');
       this.applyCSSFile('.newNote-iframe');
