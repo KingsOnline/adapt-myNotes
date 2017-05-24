@@ -55,9 +55,9 @@ define(function(require) {
     launchButton: function(event) {
       console.log($('.moodle-iframe').hasClass('hidden'));
       if ($('.moodle-view').hasClass('open') && !$('.notesManager').hasClass('hidden')) {
-        this.closeNotesManager(event); // close
+        this.closeIframe(event); // close
       } else {
-        this.openNotesManager(event);
+        this.openIframe(event);
       }
       this.showNotesManager();
     },
@@ -65,11 +65,13 @@ define(function(require) {
     showNewNote: function(event) {
       $('.newNote').removeClass('hidden');
       $('.newNote').siblings().addClass('hidden');
+      $('.iframe-controls-title').text('New note');
     },
 
     showNotesManager: function(event) {
       $('.notesManager').removeClass('hidden');
       $('.notesManager').siblings().addClass('hidden');
+      $('.iframe-controls-title').text('My notes');
     },
 
     reloadIframes: function(event) {
@@ -79,24 +81,22 @@ define(function(require) {
 
     postNewNote: function(event) {
       $('.notesManager-iframe').contents().find('#id_submitbutton').trigger("click");
-      this.showNotesManager();
+      this.openIframe();
       this.reloadIframes();
       this.applyCSSFile('.notesManager-iframe');
       this.applyCSSFile('.newNote-iframe');
-
     },
 
-    openNotesManager: function(event) {
+    openIframe: function(event) {
       $('body').addClass('moodle-open').removeClass('moodle-close');
       $('.moodle-view').removeClass('close').addClass('open');
-      $('.iframe-controls-title').text('Close My Notes');
       var context = this;
       $(".moodle-close-button").on("click", function() {
-        context.closeNotesManager();
+        context.closeIframe();
       });
     },
 
-    closeNotesManager: function(event) {
+    closeIframe: function(event) {
       $('.moodle-view').removeClass('open').addClass('close');
       $('body').removeClass('moodle-open').addClass('moodle-close');
       $('.moodle-launch-button.open').removeClass('open');

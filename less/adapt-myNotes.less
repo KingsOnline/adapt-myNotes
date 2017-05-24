@@ -17,35 +17,58 @@
   }
 }
 
-.moodle-post-button {}
-
-.moodle-close-button {
-  &.close {
-    display: none;
-  }
-
-  &.open {
-    display: block;
-  }
-}
-
 .moodle-view {
   z-index: 1000;
   display: -webkit-box;
-  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
   display: -ms-flexbox;
-  /* TWEENER - IE 10 */
   display: -webkit-flex;
-  /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
   display: flex;
-  /* NEW, Spec - Firefox, Chrome, Opera */
   flex-direction: column;
 
+  .moodle-iframe-holder button,
+  div {
+    min-width: 200px;
+  }
+
   .moodle-close-button {
-    width: 100%;
-    height: 64px;
-    color: @button-text-color;
-    background-color: @button-color;
+    position: absolute;
+    width: 60px;
+    color: @navigation-icon-color;
+    background-color: transparent;
+    .no-box-shadow;
+
+    &:hover {
+      background-color: transparent;
+      color: @navigation-icon-color-hover;
+      .no-box-shadow;
+    }
+  }
+
+  &.close {
+    .moodle-close-button {
+      right: -400px;
+      .transition-time(.8s);
+    }
+  }
+
+  &.open {
+    .moodle-close-button {
+      right: 0;
+      .transition-time(.8s);
+    }
+  }
+
+  .iframe-controls-bar {
+    height: 60px;
+    background-color: @navigation-color;
+
+  }
+
+  .iframe-controls-title {
+    position: absolute;
+    color: @navigation-icon-color;
+    left: 42%;
+    top: 17px;
   }
 
   .moodle-iframe-holder {
@@ -62,6 +85,9 @@
     .postNote-button {
       height: 64px;
       width: 100%;
+      position: absolute;
+      bottom: 0;
+      left: 0;
     }
 
     .newNote,
@@ -94,11 +120,11 @@
 //desktop side-by-side. Bigger than iPad
 @media (min-width: 1023px) {
   .moodle-view {
-    top: 64px;
+    top: 0;
     height: 100%;
     position: fixed;
     .transition-time(1s);
-    border-left: 2px solid @secondary-color;
+    border-left: 1px solid @secondary-color;
 
     &.close {
       left: 100%;
@@ -112,10 +138,6 @@
 
     .moodle-iframe-holder {
       min-width: 400px;
-    }
-
-    .moodle-close-button {
-      min-width: 300px;
     }
   }
 
@@ -146,7 +168,7 @@
     height: 100%;
     width: 100%;
     position: fixed;
-    .transition-time(1s);
+    .transition-time(.8s);
 
     &.close {
       left: 100%;
