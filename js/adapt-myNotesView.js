@@ -87,7 +87,7 @@ define(function(require) {
         this.reloadIframes();
         this.applyCSSFile('notesManager-iframe');
         this.applyCSSFile('newNote-iframe');
-      }, 8000);
+      }, 800);
 
     },
 
