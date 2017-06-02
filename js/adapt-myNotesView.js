@@ -31,7 +31,7 @@ define(function(require) {
     },
 
     loadPage: function(iframe) {
-      document.getElementById(iframe + '-iframe').src = Adapt.course.attributes._myNotes._ + iframe;
+      document.getElementById(iframe + '-iframe').src = Adapt.course.attributes._myNotes['_' + iframe];
       console.log('Applying CSS to ' + iframe);
       $('.moodle-iframe-holder').addClass('loading-iframe');
       $('.' + iframe + '-iframe').on('load', function() {
@@ -73,7 +73,7 @@ define(function(require) {
       this.loadPage('notesManager');
       this.loadPage('newNote');
       setTimeout(function() {
-        console.log('timeUP');
+        console.log('finished loading');
         $('.moodle-iframe-holder').removeClass('loading-iframe');
       }, 500);
     },
