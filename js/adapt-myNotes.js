@@ -22,10 +22,10 @@ define(function(require) {
     loadMyNotes();
   });
 
-  Adapt.on('menuView:postRender', function() {
-    console.log('menuView:preRender');
-    loadMyNotes();
-  });
+  // Adapt.on('menuView:postRender', function() {
+  //   console.log('menuView:preRender');
+  //   loadMyNotes();
+  // });
 
   function loadMyNotes() {
     console.log('create');
@@ -37,11 +37,11 @@ define(function(require) {
   }
 
   function createNotesManager() {
-    $('.moodle-iframe-holder').append("<div class='notesManager'><iframe name='notesManager-iframe' id='notesManager-iframe' class='notesManager-iframe' src='" + Adapt.course.attributes._myNotes._notesManager + "'></iframe><button class='newNote-button'>Create new Note</button></div>");
+    $('.moodle-iframe-holder').append("<div class='notesManager'><iframe name='notesManager-iframe' id='notesManager-iframe' class='notesManager-iframe'></iframe><button class='newNote-button'>Create new Note</button></div>");
   }
 
   function createPostNote() {
-    $('.moodle-iframe-holder').append("<div class='newNote hidden'><iframe name='newNote-iframe' id='newNote-iframe' class='newNote-iframe' src='" + Adapt.course.attributes._myNotes._newNote + "'></iframe><button class='postNote-button'>Post Note</button></div>");
+    $('.moodle-iframe-holder').append("<div class='newNote hidden'><iframe name='newNote-iframe' id='newNote-iframe' class='newNote-iframe'></iframe><button class='postNote-button'>Post Note</button></div>");
   }
 
   function createIframeHolder() {

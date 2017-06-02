@@ -16,8 +16,7 @@ define(function(require) {
         "navigation:openMyNotes": this.launchButton
       });
 
-      this.applyCSSFile('notesManager-iframe');
-      this.applyCSSFile('newNote-iframe');
+      this.reloadIframes();
 
       var context = this;
 
@@ -31,24 +30,20 @@ define(function(require) {
       });
     },
 
-    applyCSSFile: function(iframe) {
+    loadPage: function(iframe) {
+      document.getElementById(iframe + '-iframe').src = Adapt.course.attributes._myNotes._ + iframe;
       console.log('Applying CSS to ' + iframe);
       $('.moodle-iframe-holder').addClass('loading-iframe');
-      $('.' + iframe).on('load', function() {
+      $('.' + iframe + '-iframe').on('load', function() {
         var adaptCSS = location.protocol + '//' + location.host + location.pathname;
         adaptCSS = adaptCSS.substring(0, adaptCSS.lastIndexOf('/'));
-        adaptCSS += "/assets/adapt-myNotes.css"
-        $('.' + iframe).contents().find("head").append($("<link/>", {
+        adaptCSS += "/assets/adapt-" + iframe + ".css"
+        $('.' + iframe + '-iframe').contents().find("head").append($("<link/>", {
           rel: "stylesheet",
           href: adaptCSS,
           type: "text/css"
         }));
-
-        setTimeout(function() {
-          console.log('timeUP');
-          $('.moodle-iframe-holder').removeClass('loading-iframe');
-          document.getElementById(iframe).contentWindow.window.onbeforeunload = null; // prevents error message when leaving moodle page when you haven't submitted.
-        }, 200);
+        document.getElementById(iframe).contentWindow.window.onbeforeunload = null; // prevents error message when leaving moodle page when you haven't submitted.
       });
     },
 
@@ -75,19 +70,21 @@ define(function(require) {
     },
 
     reloadIframes: function(event) {
-      document.getElementById('newNote-iframe').src = document.getElementById('newNote-iframe').src
-      document.getElementById('notesManager-iframe').src = document.getElementById('notesManager-iframe').src
+      this.loadPage('notesManager');
+      this.loadPage('newNote');
+      setTimeout(function() {
+        console.log('timeUP');
+        $('.moodle-iframe-holder').removeClass('loading-iframe');
+      }, 500);
     },
 
     postNewNote: function(event) {
-      $('.notesManager-iframe').contents().find('#id_submitbutton').trigger("click");
+      $('.newNote-iframe').contents().find('#id_submitbutton').trigger("click");
+      var context = this;
       setTimeout(function() {
-        console.log('800ms delay for submission');
-        this.showNotesManager();
-        this.reloadIframes();
-        this.applyCSSFile('notesManager-iframe');
-        this.applyCSSFile('newNote-iframe');
-      }, 800);
+        context.showNotesManager();
+        context.reloadIframes();
+      }, 500);
 
     },
 
