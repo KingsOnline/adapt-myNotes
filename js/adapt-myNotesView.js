@@ -81,10 +81,14 @@ define(function(require) {
 
     postNewNote: function(event) {
       $('.notesManager-iframe').contents().find('#id_submitbutton').trigger("click");
-      this.openIframe();
-      this.reloadIframes();
-      this.applyCSSFile('.notesManager-iframe');
-      this.applyCSSFile('.newNote-iframe');
+      setTimeout(function() {
+        console.log('800ms delay for submission');
+        this.showNotesManager();
+        this.reloadIframes();
+        this.applyCSSFile('notesManager-iframe');
+        this.applyCSSFile('newNote-iframe');
+      }, 8000);
+
     },
 
     openIframe: function(event) {
