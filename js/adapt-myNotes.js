@@ -6,13 +6,11 @@ define(function(require) {
   // var copyNotes = require('extensions/adapt-myNotes/js/copyToNotes');
 
   Adapt.once('sideView:ready', function() {
-    console.log('adapt:start');
     createNotesManager();
     createPostNote();
   });
 
   Adapt.on('pageView:postRender', function() {
-    console.log('pageview:preRender');
     loadMyNotes();
   });
 
@@ -26,7 +24,7 @@ define(function(require) {
   }
 
   function createNotesManager() {
-    $('.moodle-iframe-holder').append("<div class='notesManager'><iframe name='notesManager-iframe' id='notesManager-iframe' class='notesManager-iframe'></iframe><button class='newNote-button'>Create new Note</button></div>");
+    $('.moodle-iframe-holder').append("<div class='notesManager hidden'><iframe name='notesManager-iframe' id='notesManager-iframe' class='notesManager-iframe'></iframe><button class='newNote-button'>Create new Note</button></div>");
   }
 
   function createPostNote() {

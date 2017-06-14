@@ -30,7 +30,6 @@ define(function(require) {
     },
 
     launchButton: function(event) {
-      console.log($('.moodle-iframe').hasClass('hidden'));
       if ($('.moodle-view').hasClass('open') && !$('.notesManager').hasClass('hidden')) {
         Adapt.trigger('sideView:close');
       } else {
@@ -52,8 +51,6 @@ define(function(require) {
     },
 
     reloadIframes: function(event) {
-      console.log('reloadirame');
-      console.log(Adapt.course.attributes._myNotes._newNote);
       Adapt.trigger('sideView:loadIframe','notesManager', 'notesManager', Adapt.course.attributes._myNotes._notesManager);
       Adapt.trigger('sideView:loadIframe','newNote', 'newNote', Adapt.course.attributes._myNotes._newNote);
       Adapt.trigger('sideView:removeLoading');
