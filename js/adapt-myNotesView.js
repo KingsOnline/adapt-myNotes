@@ -25,25 +25,7 @@ define(function(require) {
       });
 
       $(document).on('click', '.newNote-button', function() {
-        console.log('e');
         context.showNewNote();
-      });
-    },
-
-    loadPage: function(iframe) {
-      document.getElementById(iframe + '-iframe').src = Adapt.course.attributes._myNotes['_' + iframe];
-      console.log('Applying CSS to ' + iframe);
-      $('.moodle-iframe-holder').addClass('loading-iframe');
-      $('.' + iframe + '-iframe').on('load', function() {
-        var adaptCSS = location.protocol + '//' + location.host + location.pathname;
-        adaptCSS = adaptCSS.substring(0, adaptCSS.lastIndexOf('/'));
-        adaptCSS += "/assets/adapt-" + iframe + ".css"
-        $('.' + iframe + '-iframe').contents().find("head").append($("<link/>", {
-          rel: "stylesheet",
-          href: adaptCSS,
-          type: "text/css"
-        }));
-        document.getElementById(iframe).contentWindow.window.onbeforeunload = null; // prevents error message when leaving moodle page when you haven't submitted.
       });
     },
 
@@ -70,12 +52,11 @@ define(function(require) {
     },
 
     reloadIframes: function(event) {
-      this.loadPage('notesManager');
-      this.loadPage('newNote');
-      setTimeout(function() {
-        console.log('finished loading');
-        $('.moodle-iframe-holder').removeClass('loading-iframe');
-      }, 500);
+      console.log('reloadirame');
+      console.log(Adapt.course.attributes._myNotes._newNote);
+      Adapt.trigger('sideView:loadIframe','notesManager', 'notesManager', Adapt.course.attributes._myNotes._notesManager);
+      Adapt.trigger('sideView:loadIframe','newNote', 'newNote', Adapt.course.attributes._myNotes._newNote);
+      Adapt.trigger('sideView:removeLoading');
     },
 
     postNewNote: function(event) {
@@ -84,7 +65,7 @@ define(function(require) {
       setTimeout(function() {
         context.showNotesManager();
         context.reloadIframes();
-      }, 500);
+      }, 300);
     }
   });
 

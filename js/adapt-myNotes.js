@@ -5,7 +5,7 @@ define(function(require) {
   var myNotesView = require('extensions/adapt-myNotes/js/adapt-myNotesView');
   // var copyNotes = require('extensions/adapt-myNotes/js/copyToNotes');
 
-  Adapt.once('adapt:start', function() {
+  Adapt.once('sideView:ready', function() {
     console.log('adapt:start');
     createNotesManager();
     createPostNote();
@@ -15,11 +15,6 @@ define(function(require) {
     console.log('pageview:preRender');
     loadMyNotes();
   });
-
-  // Adapt.on('menuView:postRender', function() {
-  //   console.log('menuView:preRender');
-  //   loadMyNotes();
-  // });
 
   function loadMyNotes() {
     console.log('create');
