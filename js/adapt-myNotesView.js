@@ -50,9 +50,9 @@ define(function(require) {
     launchButton: function(event) {
       console.log($('.moodle-iframe').hasClass('hidden'));
       if ($('.moodle-view').hasClass('open') && !$('.notesManager').hasClass('hidden')) {
-        this.closeIframe(event); // close
+        Adapt.trigger('sideView:close');
       } else {
-        this.openIframe(event);
+        Adapt.trigger('sideView:open');
       }
       this.showNotesManager();
     },
@@ -85,22 +85,6 @@ define(function(require) {
         context.showNotesManager();
         context.reloadIframes();
       }, 500);
-
-    },
-
-    openIframe: function(event) {
-      $('body').addClass('moodle-open').removeClass('moodle-close');
-      $('.moodle-view').removeClass('close').addClass('open');
-      var context = this;
-      $(".moodle-close-button").on("click", function() {
-        context.closeIframe();
-      });
-    },
-
-    closeIframe: function(event) {
-      $('.moodle-view').removeClass('open').addClass('close');
-      $('body').removeClass('moodle-open').addClass('moodle-close');
-      $('.moodle-launch-button.open').removeClass('open');
     }
   });
 
