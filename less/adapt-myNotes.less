@@ -2,18 +2,16 @@
   float: right;
 }
 
-.copy-box {
+button.copy-box-button {
+  padding: 40px;
+  background-color: @primary-color;
+  color: @primary-color-inverted;
   position: absolute;
   display: none;
+  z-index: 10;
 
-  .copy-box-button {
-    padding: 40px;
-    background-color: @primary-color;
+  .icon {
     color: @primary-color-inverted;
-
-    .icon {
-      color: @primary-color-inverted;
-    }
   }
 }
 

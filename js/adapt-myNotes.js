@@ -3,24 +3,32 @@ define(function(require) {
   var Adapt = require('coreJS/adapt');
   var Backbone = require('backbone');
   var myNotesView = require('extensions/adapt-myNotes/js/adapt-myNotesView');
-  // var copyNotes = require('extensions/adapt-myNotes/js/copyToNotes');
+  var copyNotes = require('extensions/adapt-myNotes/js/copyToNotes');
 
   Adapt.once('sideView:loaded', function() {
-    createNotesManager();
-    createPostNote();
+
+    if (Adapt.course.attributes._myNotes._isEnabled === true) {
+      createNotesManager();
+      createPostNote();
+      if (Adapt.course.attributes._myNotes._copyNotes._isEnabled) {
+        createCopyBox();
+      }
+    }
   });
 
   Adapt.on('sideView:pageReady sideView:menuReady', function() {
-    loadMyNotes();
-  });
-
-  function loadMyNotes() {
-    console.log('create');
     if (Adapt.course.attributes._myNotes._isEnabled === true) {
       new myNotesView({
         model: new Backbone.Model()
       });
+      if (Adapt.course.attributes._myNotes._copyNotes._isEnabled) {
+        new copyNotes({});
+      }
     }
+  });
+
+  function createCopyBox() {
+    $('#wrapper').append("<button class='copy-box-button icon-save icon'><div class='copy-box-button-text'>" + Adapt.course.attributes._myNotes._copyNotes._isEnabled + "</div></button>");
   }
 
   function createNotesManager() {
