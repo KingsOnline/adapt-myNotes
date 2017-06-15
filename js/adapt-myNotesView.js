@@ -30,7 +30,7 @@ define(function(require) {
     },
 
     launchButton: function(event) {
-      if ($('.moodle-view').hasClass('open') && !$('.notesManager').hasClass('hidden')) {
+      if ($('.sideview').hasClass('open') && !$('.notesManager').hasClass('hidden')) {
         Adapt.trigger('sideView:close');
       } else {
         Adapt.trigger('sideView:open');
@@ -41,19 +41,19 @@ define(function(require) {
     showNewNote: function(event) {
       $('.newNote').removeClass('hidden');
       $('.newNote').siblings().addClass('hidden');
-      $('.iframe-controls-title').text('New note');
+      $('.sideview-controls-title').text('New note');
     },
 
     showNotesManager: function(event) {
       $('.notesManager').removeClass('hidden');
       $('.notesManager').siblings().addClass('hidden');
-      $('.iframe-controls-title').text('My notes');
+      $('.sideview-controls-title').text('My notes');
     },
 
     reloadIframes: function(event) {
       Adapt.trigger('sideView:loadIframe','notesManager', 'notesManager', Adapt.course.attributes._myNotes._notesManager);
       Adapt.trigger('sideView:loadIframe','newNote', 'newNote', Adapt.course.attributes._myNotes._newNote);
-      Adapt.trigger('sideView:removeLoading');
+      
     },
 
     postNewNote: function(event) {
