@@ -2,24 +2,29 @@ define(function(require) {
 
   var Adapt = require('coreJS/adapt');
   var Backbone = require('backbone');
-  var selected;
+  var currentSelected;
 
   var copyToNotes = Backbone.View.extend({
 
     initialize: function(blockModel) {
       this.listenTo(Adapt, 'remove', this.remove);
       var context = this;
-      $('.component').bind('mouseup', function(e) {
-        var selection;
-        if (window.getSelection) {
-          selection = window.getSelection();
-          context.copyPrompt(e, selection);
-        } else if (document.selection) {
-          selection = document.selection.createRange();
-          // copyPrompt(e, selection);
-        }
+      $('#wrapper').bind('mouseup', function(e) {
+        setTimeout(function() {
+          var selectedText = window.getSelection().toString();
+          console.log(selectedText);
+          if (selectedText != '' && currentSelected != selectedText) {
+            console.log('window.selection');
+            currentSelected = selectedText;
+            context.showBox(e.pageX, e.pageY);
+          } else {
+            console.log('hide box');
+            $('.copy-box-button').hide();
+            selectedText = '';
+          }
+        }, 100);
       });
-      var context = this;
+
       $('body').on('click', '.copy-box-button', function() {
         context.copyAcross();
         Adapt.trigger('sideView:open');
@@ -39,18 +44,6 @@ define(function(require) {
         frameContents.find('#id_messageeditable').append(selected);
       } else {
         frameContents.find('#id_messageeditable').append("<br><br>" + selected);
-      }
-    },
-
-    copyPrompt: function(e, selection) {
-      if (selection.toString() == '') {
-        $('.copy-box-button').hide();
-      } else {
-        selected = selection.toString();
-        var $element = $(e.toElement);
-        var $selected = $('.component:contains("' + selection.toString() + '")').css('background-color', 'red');
-        var position = $element.position();
-        this.showBox(e.pageX, e.pageY);
       }
     },
 
