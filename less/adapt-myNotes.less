@@ -3,15 +3,20 @@
 }
 
 button.copy-box-button {
-  padding: 40px;
-  background-color: @primary-color;
-  color: @primary-color-inverted;
+  padding: 20px;
+  background-color: @navigation-color;
+  color: @navigation-icon-color;
   position: absolute;
   display: none;
   z-index: 10;
+}
 
-  .icon {
-    color: @primary-color-inverted;
+.no-touch {
+  button.copy-box-button {
+    &:hover {
+        background-color: @navigation-color;
+        color: @navigation-icon-color-hover;
+    }
   }
 }
 

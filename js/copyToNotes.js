@@ -9,7 +9,7 @@ define(function(require) {
     initialize: function(blockModel) {
       this.listenTo(Adapt, 'remove', this.remove);
       var context = this;
-      $('#wrapper').bind('mouseup', function(e) {
+      $('body').on('mouseup', '#wrapper', function(e) {
         setTimeout(function() {
           var selectedText = window.getSelection().toString();
           console.log(selectedText);
@@ -41,9 +41,9 @@ define(function(require) {
     copyAcross: function(event) {
       var frameContents = $(".notesManager-iframe").contents();
       if (frameContents.find('#id_messageeditable').text() == '') {
-        frameContents.find('#id_messageeditable').append(selected);
+        frameContents.find('#id_messageeditable').append(currentSelected);
       } else {
-        frameContents.find('#id_messageeditable').append("<br><br>" + selected);
+        frameContents.find('#id_messageeditable').append("<br><br>" + currentSelected);
       }
     },
 
