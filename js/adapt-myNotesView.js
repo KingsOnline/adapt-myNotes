@@ -53,7 +53,7 @@ define(function(require) {
     reloadIframes: function(event) {
       Adapt.trigger('sideView:loadIframe','notesManager', 'notesManager', Adapt.course.attributes._myNotes._notesManager);
       Adapt.trigger('sideView:loadIframe','newNote', 'newNote', Adapt.course.attributes._myNotes._newNote);
-      
+      Adapt.trigger('sideView:removeLoading');
     },
 
     postNewNote: function(event) {
