@@ -15,6 +15,10 @@
       max-width: 200px !important;
     }
 
+    #id_title {
+      max-width: 286px !important;
+    }
+
     .feditor {
       max-width: 300px !important;
     }
