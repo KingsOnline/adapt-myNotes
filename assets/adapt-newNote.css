@@ -10,13 +10,13 @@
     max-width: 98% !important;
   }
 
-@media  (max-width : 470px) {
+@media (max-width : 370px) {
     #id_tags {
       max-width: 200px !important;
     }
 
     .feditor {
-      max-width: 450px !important;
+      max-width: 300px !important;
     }
   }
 
