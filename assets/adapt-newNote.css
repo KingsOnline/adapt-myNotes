@@ -7,10 +7,10 @@
   }
 
   .feditor {
-    max-width: 100% !important;
+    max-width: 98% !important;
   }
 
-@media only screen and (max-width : 520px) {
+@media  (max-width : 470px) {
     #id_tags {
       max-width: 200px !important;
     }
