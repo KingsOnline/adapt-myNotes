@@ -1,28 +1,43 @@
-  #dropdowncontainer, #id_cancel, #navbar, #page-header, #page-footer, #page-header,  #dock, #block-region-side-pre,
-  #maincontent, #fitem_id_subject, #fitem_id_attachments, #fgroup_id_buttonar, #oublogbuttons, #block-region-side-post, .navbar, .fitem_id_mailnow, .fdescription,
-  .fheader, .block_adminblock, .settings, .oublog-groups-individual-selectors, .participationbutton, .addexportpostsbutton,
-  .oublog-views  {
-      display: none !important;
+  #dropdowncontainer, #id_cancel, #navbar, #page-header, #page-footer, #page-header, #dock, #block-region-side-pre, #maincontent, #fitem_id_subject, #fitem_id_attachments, #fgroup_id_buttonar, #oublogbuttons, #block-region-side-post, .navbar, .fitem_id_mailnow, .fdescription, .fheader, .block_adminblock, .settings, .oublog-groups-individual-selectors, .participationbutton, .addexportpostsbutton, .oublog-views {
+    display: none !important;
   }
 
-  body {
-      padding: 0 !important;
-  }
-
-  .fitem_actionbuttons {
-      text-align: center;
+  #page-content {
+    padding-right: 0;
   }
 
   .feditor {
-      max-width: 100% !important;
+    max-width: 100% !important;
+  }
+
+@media only screen and (max-width : 520px) {
+    #id_tags {
+      max-width: 200px !important;
+    }
+
+    .feditor {
+      max-width: 450px !important;
+    }
+  }
+
+  body {
+    padding: 0 !important;
+  }
+
+  .fitem_actionbuttons {
+    text-align: center;
+  }
+
+  .fitemtitle {
+    max-width: 100% !important;
   }
 
   span.error {
-      display: none;
+    display: none;
   }
 
   .hidden {
-    display: inhert !important;
+    display: inherit !important;
     visibility: inherit !important;
   }
 
@@ -31,19 +46,15 @@
   }
 
   input, .fitem_fcheckbox {
-      display: none;
+    display: none;
   }
 
   #region-main {
-      width: 100% !important;
+    width: 100% !important;
   }
 
   #container {
-      max-width: 100%;
-      margin: 0;
-      padding: 0;
-  }
-
-  .three-column, .feditor {
-      max-width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
   }
