@@ -12,6 +12,7 @@ define(function(require) {
       createPostNote();
       if (Adapt.course.attributes._myNotes._copyNotes._isEnabled) {
         createCopyBox();
+        new copyNotes({});
       }
     }
   });
@@ -21,14 +22,11 @@ define(function(require) {
       new myNotesView({
         model: new Backbone.Model()
       });
-      if (Adapt.course.attributes._myNotes._copyNotes._isEnabled) {
-        new copyNotes({});
-      }
     }
   });
 
   function createCopyBox() {
-    $('#wrapper').append("<button class='copy-box-button'><div class='copy-box-button-text'>" + Adapt.course.attributes._myNotes._copyNotes._isEnabled + "</div></button>");
+    $('#wrapper').append("<button class='copy-box-button'><div class='copy-box-button-text'>" + Adapt.course.attributes._myNotes._copyNotes.buttonText + "</div></button>");
   }
 
   function createNotesManager() {
