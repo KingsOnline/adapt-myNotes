@@ -39,7 +39,7 @@ define(function(require) {
     },
 
     copyAcross: function(event) {
-      var frameContents = $(".notesManager-iframe").contents();
+      var frameContents = $(".newNote-iframe").contents();
       if (frameContents.find('#id_messageeditable').text() == '') {
         frameContents.find('#id_messageeditable').append(currentSelected);
       } else {
