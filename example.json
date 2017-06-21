@@ -1,7 +1,10 @@
-// to go in blocks.json
-"_moodle": {
+// to go in course.json
+"_myNotes": {
   "_isEnabled": true,
-  "_type": "discussion",
-  "_link": "https://keats.kcl.ac.uk/mod/forum/post.php?reply=209904#mformforum",
-  "buttonLabel": "Comments"
+  "_notesManager": "https://keats.kcl.ac.uk/mod/oublog/view.php?id=1776236",
+  "_newNote": "https://keats.kcl.ac.uk/mod/oublog/editpost.php?blog=748",
+  "_copyNotes": {
+    "_isEnabled": true,
+    "buttonText": "Create note"
+  }
 }
