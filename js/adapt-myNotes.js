@@ -26,14 +26,17 @@ define(function(require) {
   });
 
   function createCopyBox() {
-    $('#wrapper').append("<button class='copy-box-button'><div class='copy-box-button-text'>" + Adapt.course.attributes._myNotes._copyNotes.buttonText + "</div></button>");
+    var template = Handlebars.templates.myNotesCopy;
+    $('#wrapper').append(template(Adapt.course.attributes._myNotes._copyNotes));
   }
 
   function createNotesManager() {
-    $('.sideview-iframe-holder').append("<div class='notesManager hidden'><iframe name='notesManager-iframe' id='notesManager-iframe' class='notesManager-iframe'></iframe><button class='newNote-button'>Create new Note</button></div>");
+    var template = Handlebars.templates.myNotesManager;
+    $('.sideview-iframe-holder').append(template());
   }
 
   function createPostNote() {
-    $('.sideview-iframe-holder').append("<div class='newNote hidden'><iframe name='newNote-iframe' id='newNote-iframe' class='newNote-iframe'></iframe><button class='postNote-button'>Post Note</button></div>");
+    var template = Handlebars.templates.myNotesNew;
+    $('.sideview-iframe-holder').append(template());
   }
 });

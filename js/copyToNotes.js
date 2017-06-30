@@ -12,13 +12,10 @@ define(function(require) {
       $('body').on('mouseup', '#wrapper', function(e) {
         setTimeout(function() {
           var selectedText = window.getSelection().toString();
-          console.log(selectedText);
           if (selectedText != '' && currentSelected != selectedText) {
-            console.log('window.selection');
             currentSelected = selectedText;
             context.showBox(e.pageX, e.pageY);
           } else {
-            console.log('hide box');
             $('.copy-box-button').hide();
             selectedText = '';
           }
@@ -48,12 +45,11 @@ define(function(require) {
     },
 
     showBox: function(x, y) {
-      console.log('show box');
       $('.copy-box-button').show();
       $('.copy-box-button').css({
         "left": x,
         "top": y + 10
-      })
+      });
     }
   });
 
