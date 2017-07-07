@@ -9,13 +9,8 @@ define(function(require) {
 
     initialize: function(blockModel) {
       this.listenTo(Adapt, 'remove', this.remove);
-      var data = this.model.toJSON();
-      var template = Handlebars.templates.myNotes;
-      this.setElement(template(data)).$el.appendTo($(".navigation-inner"));
-      this.listenTo(Adapt, {
-        "navigation:openMyNotes": this.launchButton
-      });
 
+      this.createNavigationButton();
       this.reloadIframes();
 
       var context = this;
@@ -26,6 +21,15 @@ define(function(require) {
 
       $(document).on('click', '.newNote-button', function() {
         context.showNewNote();
+      });
+    },
+
+    createNavigationButton: function(event) {
+      var data = this.model.toJSON();
+      var template = Handlebars.templates.myNotes;
+      this.setElement(template(data)).$el.appendTo($(".navigation-inner"));
+      this.listenTo(Adapt, {
+        "navigation:openMyNotes": this.launchButton
       });
     },
 
