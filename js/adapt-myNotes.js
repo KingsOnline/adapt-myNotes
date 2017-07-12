@@ -20,7 +20,6 @@ define(function(require) {
     if (Adapt.course.get('_myNotes')._isEnabled) {
       Adapt.course.get('_myNotes')._notesManager = routeAdress + Adapt.course.get('_myNotes')._notesManager + '_' + number;
       Adapt.course.get('_myNotes')._newNote = routeAdress + Adapt.course.get('_myNotes')._newNote + '_' + number;
-      console.log(Adapt.course.get('_myNotes')._newNote);
     }
   });
 

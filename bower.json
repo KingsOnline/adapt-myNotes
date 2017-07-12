@@ -3,7 +3,7 @@
   "version": "0.1.2",
   "framework": "^2.0.0",
   "homepage": "https://github.com/kingsonline/adapt-myNotes",
-  "issues": "https://github.com/kingsonline/adapt-moodle/issues",
+  "issues": "https://github.com/kingsonline/adapt-myNotes/issues",
   "displayName": "My Notes",
   "extension": "myNotes",
   "description": "Brings note taking functionality from the hosting LMS into an Adapt course.",

@@ -29,14 +29,14 @@
                   "type": "string",
                   "title": "Notes manager",
                   "help": "This shows all the notes you have taken.",
-                  "default": "[iLesson]_notes_manager",
+                  "default": "notes_manager",
                   "inputType": "Text"
                 },
                 "_newNote": {
                   "type": "string",
                   "title": "New note",
                   "help": "This creates a new note",
-                  "default": "[iLesson]_notes_new",
+                  "default": "notes_new",
                   "inputType": "Text"
                 },
                 "_copyNotes": {
