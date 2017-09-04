@@ -37,9 +37,9 @@ define(function(require) {
       if ($('.sideview').hasClass('open') && !$('.notesManager').hasClass('hidden')) {
         Adapt.trigger('sideView:close');
       } else {
+        this.showNotesManager();
         Adapt.trigger('sideView:open');
       }
-      this.showNotesManager();
     },
 
     showNewNote: function(event) {
